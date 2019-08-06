@@ -7,6 +7,7 @@ require "semverse"
 
 require "inspec/version"
 require "inspec/utils/spdx"
+require "inspec/resources/platform"
 
 module Inspec
   # Extract metadata.rb information
