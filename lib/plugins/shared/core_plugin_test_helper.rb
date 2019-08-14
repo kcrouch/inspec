@@ -58,7 +58,7 @@ module CorePluginFunctionalHelper
     if opts.key?(:prefix)
       prefix = opts[:prefix]
     elsif opts.key?(:env)
-      prefix = opts[:env].to_a.map { |assignment| "#{assignment[0]}=#{assignment[1]}" }.join(" ")
+      prefix = assemble_env_prefix opts[:env]
     end
 
     Inspec::FuncTestRunResult.new(CMD.run_command("#{prefix} #{exec_inspec} #{command_line}"))
