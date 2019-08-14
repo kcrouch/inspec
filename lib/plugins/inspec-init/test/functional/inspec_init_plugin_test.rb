@@ -26,7 +26,6 @@ class InitPluginCli < Minitest::Test
 
       run_result = run_inspec_process("init plugin --no-prompt #{plugin}", prefix: "cd #{dir} &&")
 
-      skip_windows!
       assert_includes run_result.stdout, "Creating new inspec plugin at"
       assert_includes run_result.stdout, plugin
 
@@ -132,7 +131,6 @@ class InitPluginCli < Minitest::Test
 
       run_result = run_inspec_process("init plugin #{plugin} --no-prompt #{opts}", prefix: "cd #{dir} &&")
 
-      skip_windows!
       assert_includes run_result.stdout, "Creating new inspec plugin at"
       assert_includes run_result.stdout, plugin
 
@@ -142,10 +140,11 @@ class InitPluginCli < Minitest::Test
 
       # Check generated files and contents.
       # Each file must exist, and its contents must match each of the regexen given.
+
       {
         File.join(plugin, "README.md") => [],
         File.join(plugin, "LICENSE") => [
-          /Copyright © 2018 Bob/,
+          /Copyright . 2018 Bob/,
           /used to endorse or promote/,
         ],
         File.join(plugin, "Gemfile") => [],
